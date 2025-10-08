@@ -1,60 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
-    <link rel="stylesheet" href="detail.css">
+  <meta charset="UTF-8">
+  <title>Dashboard Quản lý Tài chính</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link href="dark-mode.css" rel="stylesheet">
+  <link href="popup-survey.css" rel="stylesheet">
+  <link href="animations.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body style="background-color: rgb(219, 175, 187);">
-    <div class="box">
-        <div class="title">
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar d-flex flex-column">
+      <h2>💰 Finance</h2>
+      <nav class="flex-grow-1">
+        <a href="#" class="tab-link active" data-tab="overview" data-translate="overview">📊 Tổng quan</a>
+        <a href="#" class="tab-link" data-tab="income" data-translate="income">💵 Thu nhập</a>
+        <a href="#" class="tab-link" data-tab="expenses" data-translate="expenses">🧾 Chi tiêu</a>
+        <a href="#" class="tab-link" data-tab="funds" data-translate="funds">🤝 Quỹ chung</a>
 
-            <p>Song of month news</p>
-            <div class="border">
-            </div>
-        </div>
-        <div class="container1">
-            <div class="right">
-                <a href="#"><img src="https://i.ytimg.com/vi/JXvOlJOGU5Y/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLD_pt_1NpCn2JASm4znA-n7dkUfRw" alt="hs"></a>
-                    <div class="mainnews"></div>
-                        <div  class="news"><a href="https://www.youtube.com/watch?v=JXvOlJOGU5Y" style="text-decoration: none; color: black; font-weight: bold;">Venus Bug</a></div>
-                        <div><a href="https://www.youtube.com/watch?v=JXvOlJOGU5Y" style="color: black;">25/01/2025</a></div>
-                    </div>
-                <div class="sidenews">
-                    <ul>
-                        <li>Top singer</li>
-                        <li>Houshou Marine</li>
-                        <li>Hoshimachi Suisei</li>
-                        <li>Calliope Mori</li>
+      </nav>
+    </aside>
 
-                    </ul>
-            </div>
-            </div>
+    <!-- Main content -->
+    <main class="content">
+      <!-- User menu -->
+      <div class="user-menu">
+        <div class="user-avatar" id="user-avatar">
+          <img src="images/tải xuống.jfif" alt="Avatar" id="avatar-img">
         </div>
-        <div class="box2">
-            <div class="title2">
-                <p>TOP SONG OFF MONTH</p>
-                <div class="border2"></div>
-            </div>
-            <div class="container2">
-                <div class="leftpc">
-                    <a href="https://www.youtube.com/watch?v=FVBQM1Y7ukg&list=RDJXvOlJOGU5Y&index=9"><img src="https://i.ytimg.com/vi/FVBQM1Y7ukg/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAff_Hka0skAtn_quJ9E1c9NNiaQg" alt="asd">
-                    <p>Overdose(Cover)</p>
-                </a>
-                </div>
-                <div class="midpc">
-                    <a href="https://www.youtube.com/watch?v=BXB26PzV31k&list=RDJXvOlJOGU5Y&index=8"><img src="https://i.ytimg.com/vi/BXB26PzV31k/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCcBsBvs98hfe2xOrHUp_8jbWIu5A" alt="">
-                    <p>end of a life(Original Song)</p>
-                    </a>
-                </div>
-                <div class="rightpc">
-                    <a href="https://www.youtube.com/watch?v=iiw9Z1I1AcE"><img src="https://i.ytimg.com/vi/iiw9Z1I1AcE/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLDkRhV_EUtV8Ou28F8CN7F3ofko-w" alt="">
-                    <p>Overdose(Original Song)</p>
-                    </a>
-                </div>
-            </div>
+        <div class="user-dropdown" id="user-dropdown">
+          <div class="user-info">
+            <span id="username-display">User</span>
+          </div>
+          <a href="settings.html">⚙️ Settings</a>
+          <a href="#" id="logout-menu">🚪 Logout</a>
         </div>
+      </div>
+      
+      <h1 data-translate="dashboard-title">📊 Dashboard Quản lý Tài chính</h1>
+
+      <!-- Tổng quan -->
+      <section id="overview" class="tab-content active">
+        <h2 data-translate="financial-overview">Tổng quan tài chính</h2>
+        <div class="overview-cards">
+          <div class="card"><span data-translate="income-label">Thu nhập:</span> <span id="show-income">0</span> VND</div>
+          <div class="card"><span data-translate="expenses-label">Chi tiêu:</span> <span id="show-expenses">0</span> VND</div>
+          <div class="card"><span data-translate="funds-label">Đóng góp quỹ:</span> <span id="show-funds">0</span> VND</div>
+          <div class="card highlight"><span data-translate="balance-label">Số dư còn lại:</span> <span id="show-balance">0</span> VND</div>
+        </div>
+        <div style="width:400px; height:400px; margin:auto;">
+          <canvas id="financeChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Thu nhập -->
+      <section id="income" class="tab-content">
+        <h2 data-translate="personal-income">Thu nhập cá nhân</h2>
+        <form id="income-form">
+          <div class="mb-3">
+            <input type="text" id="income-amount" class="form-control" placeholder="Nhập thu nhập (VND)" data-translate-placeholder="enter-income" autocomplete="off" required>
+          </div>
+          <button type="submit" class="btn btn-success" data-translate="update">Cập nhật</button>
+        </form>
+      </section>
+
+      <!-- Chi tiêu -->
+      <section id="expenses" class="tab-content">
+        <h2 data-translate="personal-expenses">Chi tiêu cá nhân</h2>
+        <form id="expense-form">
+          <div class="mb-3">
+            <input type="text" id="amount" class="form-control" placeholder="Số tiền (VND)" data-translate-placeholder="amount" autocomplete="off" required>
+          </div>
+          <div id="category-buttons" class="mb-3 d-flex flex-wrap gap-2">
+            <button type="button" class="category-btn btn btn-outline-primary" data-category="Ăn uống" data-translate="eating">🍜 Ăn uống</button>
+            <button type="button" class="category-btn btn btn-outline-primary" data-category="Xem phim" data-translate="movie">🎬 Xem phim</button>
+            <button type="button" class="category-btn btn btn-outline-primary" data-category="Mua sắm" data-translate="shopping">🛍️ Mua sắm</button>
+            <button type="button" class="category-btn btn btn-outline-primary" data-category="Đi lại" data-translate="transport">🚌 Đi lại</button>
+            <button type="button" class="category-btn btn btn-outline-primary" data-category="Khác" data-translate="other">➕ Khác</button>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="custom-category" class="form-control" placeholder="Nhập tên danh mục khác" autocomplete="off" style="display:none;">
+            <input type="hidden" id="category" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="note" class="form-control" placeholder="Ghi chú" data-translate-placeholder="note" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <input type="date" id="date" class="form-control" autocomplete="off" required>
+          </div>
+          <button type="submit" class="btn btn-primary" data-translate="add-expense">Thêm chi tiêu</button>
+        </form>
+        <ul id="expense-list" class="list-unstyled mt-3"></ul>
+      </section>
+
+      <!-- Quỹ chung -->
+      <section id="funds" class="tab-content">
+        <h2 data-translate="common-fund">Quỹ chung</h2>
+        <form id="fund-form">
+          <div class="mb-3">
+            <input type="text" id="fund-name" class="form-control" placeholder="Tên quỹ (VD: Quỹ Du Lịch)" data-translate-placeholder="fund-name" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="fund-target" class="form-control" placeholder="Số tiền mục tiêu (VND)" data-translate-placeholder="target-amount" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="fund-amount" class="form-control" placeholder="Số tiền ban đầu (VND)" data-translate-placeholder="initial-amount" autocomplete="off" required>
+          </div>
+          <button type="submit" class="btn btn-success" data-translate="create-fund">Tạo quỹ</button>
+        </form>
+        <ul id="fund-list" class="list-unstyled mt-3"></ul>
+      </section>
+    </main>
+  </div>
+
+  <!-- Survey Popup -->
+  <div id="survey-popup" class="survey-popup" style="display: none;">
+    <div class="survey-popup-content">
+      <h3>📋 Khảo sát nhanh</h3>
+      <form id="popup-survey-form">
+        <div class="mb-2">
+          <label>Tuổi của bạn:</label>
+          <select name="age" required>
+            <option value="18-25">18-25</option>
+            <option value="26-35">26-35</option>
+            <option value="36-50">36-50</option>
+            <option value="50+">Trên 50</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label>Nghề nghiệp:</label>
+          <select name="job" required>
+            <option value="student">Sinh viên/Học sinh</option>
+            <option value="worker">Người đi làm mới</option>
+            <option value="family">Có gia đình</option>
+            <option value="business">Kinh doanh/Tự do</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label>Thu nhập hàng tháng (VND):</label>
+          <input type="text" name="income" id="income-input" placeholder="VD: 15.000.000" required style="width: 100%; padding: 8px; border: 1px solid #8A2BE2; border-radius: 5px; background: rgba(50, 0, 80, 0.8); color: #E6E6FA;">
+        </div>
+        <div class="mb-2">
+          <label>Sở thích:</label>
+          <div>
+            <input type="checkbox" name="hobbies" value="food" id="h1"><label for="h1">🍽️ Ăn uống</label>
+            <input type="checkbox" name="hobbies" value="travel" id="h2"><label for="h2">✈️ Du lịch</label>
+            <input type="checkbox" name="hobbies" value="shopping" id="h3"><label for="h3">🛍️ Mua sắm</label>
+          </div>
+        </div>
+        <div class="popup-buttons">
+          <button type="submit" class="btn btn-primary">✅ Hoàn thành</button>
+          <button type="button" id="skip-survey" class="btn btn-secondary">⏭️ Bỏ qua</button>
+        </div>
+      </form>
     </div>
+  </div>
+
+  <!-- Suggestions Popup -->
+  <div id="suggestions-popup" class="survey-popup" style="display: none;">
+    <div class="survey-popup-content" style="max-width: 600px;">
+      <h3>💡 Gợi ý chi tiêu cho bạn</h3>
+      <div id="suggestions-list"></div>
+      <div class="popup-buttons">
+        <button type="button" id="close-suggestions" class="btn btn-primary">✅ Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/test.js"></script>
+  <script src="js/dark-mode.js"></script>
+  <script src="js/language.js"></script>
+  <script src="js/fund-fix.js"></script>
+  <script src="js/form-reset.js"></script>
+  <script src="js/input-clear.js"></script>
+  <script src="js/money-suggest.js"></script>
+  <script src="js/popup-survey.js"></script>
 </body>
 </html>
